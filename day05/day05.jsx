@@ -196,7 +196,7 @@ import _ from 'lodash';
 
 // console.log('obj: =>', newObj);
 
-
+// continue...todo
 
 /**
  * 
@@ -220,6 +220,80 @@ import _ from 'lodash';
  * 我们想办法将data1和setData1对应存储起来，当setData1被调用的时候，就说明data1发生了变化，此时useEffect就能够重新
  * 执行回调函数。
  * 
- * continue....
+ *
+ * 如果要保存，而且还需要对应保存，那么我们就需要创建三个东西：
+ * 1. 存储state状态的容器
+ * 2. 存储设置state状态的容器
+ * 3. 索引值，对应存储
  * 
+ */
+// const states = [];
+// const stateSetters = [];
+// let startIndex = 0;
+
+// const useState = (initialValue) => {
+//   // 1. 创建states状态，需要判断是否存在state，如果不存在的话，储存状态；如果存在的话，直接取出状态
+//   states[startIndex] = states[startIndex] ||  _.cloneDeep(initialValue);
+//   // 2. 创建设置states状态的函数
+//   /**
+//    * 这里因为是一个闭包函数，闭包函数执行的时候，会根据作用域查找startIndex的值，但是由于
+//    * startIndex的值会被缓存，所以闭包函数在执行的时候，都会是最新的startIndex值。我们想有个
+//    * 局部的startIndex值，这样闭包函数每次执行的时候才能缓存startIndex的值。
+//    *    解决方式也很简单，立即执行函数，通过函数参数的传递解决问题
+//    */
+//   // stateSetters[startIndex] = (newValue) => {
+//   //   states[startIndex] = newValue;
+//   // }
+//   if (!stateSetters[startIndex] !== 'function') {
+//     stateSetters[startIndex] = ((index) => {
+//       return (newValue) => {
+//         states[index] = newValue;
+//       }
+//     })(startIndex);
+//   }
+  
+//   // 3. 获取对应的状态和设置状态的方法
+//   const _state = states[startIndex];
+//   const _setState = stateSetters[startIndex];
+
+//   // 自增索引值
+//   startIndex ++;
+
+//   return [
+//     _state,
+//     _setState
+//   ]
+// };
+
+
+// function App() {
+//   const [ count1, setCount1 ] = useState(0);
+//   const [ count2, setCount2 ] = useState(0);
+//   return (
+//     <div className="app-container">
+//       <h1>count1: { count1 }</h1>
+//       <h2>count2: { count2 }</h2>
+//       <button onClick={ setCount1(count1 + 1) }>ADD COUNT1</button>
+//       <button onClick={ setCount2(count2 + 2) }>ADD COUNT2</button>
+//     </div>
+//   );
+// }
+
+
+// // render函数，用于重新渲染视图
+// function render() {
+//   startIndex = 0;
+//   App();
+// };
+
+// render();
+
+// ReactDOM.render(
+//   App(),
+//   document.getElementById('app'),
+// );
+
+
+/**
+ * 到目前为止，obj.a => 推导到 => useState的逻辑已经完成，好好的总结一下吧。
  */
