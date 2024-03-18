@@ -26,9 +26,8 @@
  * 
  * 
  *  useCallback和useMemo差不多，[]依赖不填的原因在于，函数一般都是静态的。
- *  const cbSetCount2 = useCallback(() => {
- *      setCount(count => count + 2) 
- *  };
+ *  const cbSetCount2 = useCallback(() => 
+ *      () => setCount(count => count + 2) 
  *  , [])
  * 
  * 
